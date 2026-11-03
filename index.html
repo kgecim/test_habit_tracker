@@ -1,310 +1,71 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Habits</title>
+<title>Habits</title>
 <style>
-  :root {
-    color-scheme: dark;
-    --bg: #100d16;
-    --panel: #191321;
-    --panel-2: #21182b;
-    --line: #382640;
-    --text: #f6eff8;
-    --muted: #a99bad;
-    --pink: #f18acb;
-    --pink-soft: #512b4c;
-    --purple: #a78bfa;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 12px;
-    background: var(--bg);
-    color: var(--text);
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-  .widget {
-    width: 100%;
-    max-width: 340px;
-    margin: 0 auto;
-  }
-  .topline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    margin-bottom: 13px;
-  }
-  .eyebrow {
-    color: var(--pink);
-    font-size: 10px;
-    font-weight: 750;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-  }
-  .date {
-    color: var(--muted);
-    font-size: 11px;
-    text-align: right;
-  }
-  h1 {
-    margin: 0 0 3px;
-    font-size: 23px;
-    line-height: 1.15;
-    font-weight: 700;
-    letter-spacing: -.045em;
-  }
-  .subtitle {
-    margin: 0 0 17px;
-    color: var(--muted);
-    font-size: 11px;
-  }
-  .streak-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 13px 14px;
-    margin-bottom: 17px;
-    border: 1px solid var(--line);
-    border-radius: 13px;
-    background: linear-gradient(135deg, #24172e, #191321 72%);
-  }
-  .streak-label {
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-  .streak-number {
-    margin-top: 2px;
-    color: var(--pink);
-    font-size: 29px;
-    line-height: 1;
-    font-weight: 750;
-    letter-spacing: -.05em;
-  }
-  .streak-unit {
-    color: var(--muted);
-    font-size: 11px;
-    margin-left: 4px;
-  }
-  .progress-wrap { min-width: 84px; text-align: right; }
-  .progress-value { font-size: 12px; font-weight: 700; }
-  .progress-track {
-    height: 5px;
-    width: 88px;
-    margin-top: 7px;
-    overflow: hidden;
-    border-radius: 10px;
-    background: #382a40;
-  }
-  .progress-fill {
-    height: 100%;
-    width: 0;
-    border-radius: inherit;
-    background: linear-gradient(90deg, var(--purple), var(--pink));
-    transition: width .2s ease;
-  }
-  .section-label {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 2px 8px;
-    color: var(--muted);
-    font-size: 10px;
-    font-weight: 750;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-  }
-  .habit-list { display: grid; gap: 7px; }
-  .habit {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    min-height: 48px;
-    padding: 10px 12px;
-    border: 1px solid var(--line);
-    border-radius: 11px;
-    background: var(--panel);
-    cursor: pointer;
-    transition: border-color .18s ease, background .18s ease;
-  }
-  .habit:hover { border-color: #775071; }
-  .habit.done {
-    border-color: #68405f;
-    background: #211827;
-  }
-  .habit input {
-    appearance: none;
-    -webkit-appearance: none;
-    flex: 0 0 17px;
-    width: 17px;
-    height: 17px;
-    margin: 0;
-    border: 1.5px solid #806b87;
-    border-radius: 5px;
-    background: #120e18;
-    cursor: pointer;
-    display: grid;
-    place-content: center;
-  }
-  .habit input::after {
-    content: "";
-    width: 8px;
-    height: 4px;
-    border: solid #170f1b;
-    border-width: 0 0 2px 2px;
-    transform: rotate(-45deg) scale(0);
-    transition: transform .12s ease;
-  }
-  .habit input:checked {
-    border-color: var(--pink);
-    background: var(--pink);
-  }
-  .habit input:checked::after { transform: rotate(-45deg) scale(1); }
-  .habit input:focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; }
-  .habit-name {
-    flex: 1;
-    font-size: 12px;
-    font-weight: 550;
-    letter-spacing: .005em;
-  }
-  .habit.done .habit-name { color: #cbb9ce; }
-  .status {
-    color: #806f87;
-    font-size: 9px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-  }
-  .habit.done .status { color: var(--pink); }
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    margin-top: 13px;
-    color: #83758a;
-    font-size: 9px;
-  }
-  .complete-message { color: var(--pink); }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { transition: none !important; }
-  }
+:root{color-scheme:dark;--bg:#100d16;--panel:#191321;--line:#382640;--text:#f6eff8;--muted:#a99bad;--pink:#f18acb;--purple:#a78bfa}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:transparent}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text)}
+.widget{width:100%;max-width:290px;padding:5px;margin:0 auto}
+.streak{display:flex;align-items:center;gap:7px;padding:0 2px 8px}
+.label{font-size:11px;font-weight:650;color:var(--muted)}
+.number{font-size:23px;line-height:1;font-weight:750;letter-spacing:-.04em;color:var(--pink)}
+.unit{font-size:10px;color:var(--muted)}
+.habits{display:grid;gap:5px}
+.habit{min-height:34px;display:flex;align-items:center;gap:9px;padding:6px 9px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.habit.done{border-color:#68405f;background:#211827}
+input{appearance:none;-webkit-appearance:none;width:15px;height:15px;flex:0 0 15px;margin:0;border:1.5px solid #806b87;border-radius:4px;background:#120e18;display:grid;place-content:center;cursor:pointer}
+input:after{content:"";width:7px;height:4px;border:solid #170f1b;border-width:0 0 2px 2px;transform:rotate(-45deg) scale(0)}
+input:checked{border-color:var(--pink);background:var(--pink)}
+input:checked:after{transform:rotate(-45deg) scale(1)}
+input:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.name{font-size:11px;font-weight:550;line-height:1.2}
+.habit.done .name{color:#cbb9ce}
+@media(prefers-reduced-motion:no-preference){.habit,input:after{transition:background .15s,border-color .15s,transform .15s}}
 </style>
 </head>
 <body>
 <main class="widget" id="habit-widget">
-  <div class="topline">
-    <span class="eyebrow">Daily routine</span>
-    <span class="date" id="today-date"></span>
-  </div>
-  <h1>My habits</h1>
-  <p class="subtitle">Small steps. Every single day.</p>
-
-  <section class="streak-card" aria-label="Streak und Tagesfortschritt">
-    <div>
-      <div class="streak-label">Current streak</div>
-      <div><span class="streak-number" id="streak-number">0</span><span class="streak-unit">days</span></div>
-    </div>
-    <div class="progress-wrap">
-      <div class="progress-value" id="progress-value">0 / 5</div>
-      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-    </div>
+  <div class="streak"><span class="label">Current streak</span><span class="number" id="streak">0</span><span class="unit">days</span></div>
+  <section class="habits" id="habits" aria-label="Daily habits">
+    <label class="habit"><input type="checkbox" data-name="Scheduled WakeUp"><span class="name">Scheduled WakeUp</span></label>
+    <label class="habit"><input type="checkbox" data-name="Coffee + News"><span class="name">Coffee + News</span></label>
+    <label class="habit"><input type="checkbox" data-name="Meditate"><span class="name">Meditate</span></label>
+    <label class="habit"><input type="checkbox" data-name="Sups"><span class="name">Sups</span></label>
+    <label class="habit"><input type="checkbox" data-name="Evening Care"><span class="name">Evening Care</span></label>
   </section>
-
-  <div class="section-label"><span>Today's focus</span><span id="percent">0%</span></div>
-  <section class="habit-list" id="habit-list" aria-label="Daily habits">
-    <label class="habit"><input type="checkbox" data-habit="Scheduled WakeUp"><span class="habit-name">Scheduled WakeUp</span><span class="status">Pending</span></label>
-    <label class="habit"><input type="checkbox" data-habit="Coffee + News"><span class="habit-name">Coffee + News</span><span class="status">Pending</span></label>
-    <label class="habit"><input type="checkbox" data-habit="Meditate"><span class="habit-name">Meditate</span><span class="status">Pending</span></label>
-    <label class="habit"><input type="checkbox" data-habit="Sups"><span class="habit-name">Sups</span><span class="status">Pending</span></label>
-    <label class="habit"><input type="checkbox" data-habit="Evening Care"><span class="habit-name">Evening Care</span><span class="status">Pending</span></label>
-  </section>
-
-  <div class="footer">
-    <span id="completion-note" aria-live="polite">One habit at a time.</span>
-    <span>Saved automatically</span>
-  </div>
 </main>
 <script>
-(() => {
-  const KEY = "minimal-purple-habit-tracker-v1";
-  const names = ["Scheduled WakeUp", "Coffee + News", "Meditate", "Sups", "Evening Care"];
-  const today = new Date();
-  const dateKey = (d) => {
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    return `${y}-${m}-${day}`;
-  };
-  const todayKey = dateKey(today);
-  const dateLabel = new Intl.DateTimeFormat("en-GB", {
-    weekday: "short", day: "numeric", month: "short"
-  }).format(today);
-
-  let data = {};
-  try {
-    const parsed = JSON.parse(localStorage.getItem(KEY) || "{}");
-    if (parsed && typeof parsed === "object" && parsed.days && typeof parsed.days === "object") data = parsed;
-  } catch (_) {}
-  if (!data.days) data.days = {};
-  if (!data.days[todayKey]) data.days[todayKey] = {};
-
-  const list = document.getElementById("habit-list");
-  const boxes = [...list.querySelectorAll("input[type=checkbox]")];
-  const completedFor = (key) => names.every(name => data.days[key] && data.days[key][name] === true);
-
-  // Restore today's checkboxes.
-  boxes.forEach(box => {
-    box.checked = data.days[todayKey][box.dataset.habit] === true;
-  });
-
-  function currentStreak() {
-    // A streak counts consecutive fully completed calendar days ending today.
-    let count = 0;
-    const cursor = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    while (true) {
-      const key = dateKey(cursor);
-      if (!completedFor(key)) break;
-      count++;
-      cursor.setDate(cursor.getDate() - 1);
-    }
-    return count;
-  }
-
-  function save() {
-    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (_) {}
-  }
-
-  function render() {
-    const done = boxes.filter(box => box.checked).length;
-    const total = names.length;
-    boxes.forEach(box => {
-      const row = box.closest(".habit");
-      row.classList.toggle("done", box.checked);
-      row.querySelector(".status").textContent = box.checked ? "Done" : "Pending";
-    });
-    document.getElementById("progress-value").textContent = `${done} / ${total}`;
-    document.getElementById("progress-fill").style.width = `${done / total * 100}%`;
-    document.getElementById("percent").textContent = `${Math.round(done / total * 100)}%`;
-    document.getElementById("streak-number").textContent = currentStreak();
-    document.getElementById("completion-note").textContent =
-      done === total ? "All habits completed. Well done." :
-      done === 0 ? "One habit at a time." : `${total - done} left to complete today.`;
-    save();
-  }
-
-  boxes.forEach(box => {
-    box.addEventListener("change", () => {
-      data.days[todayKey][box.dataset.habit] = box.checked;
-      render();
-    });
-  });
-
-  document.getElementById("today-date").textContent = dateLabel;
-  render();
+(()=>{
+ const KEY="notion-habit-tracker-v1";
+ const names=["Scheduled WakeUp","Coffee + News","Meditate","Sups","Evening Care"];
+ const keyFor=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+ const today=keyFor(new Date());
+ let data={days:{}};
+ try{const saved=JSON.parse(localStorage.getItem(KEY)||"{}");if(saved&&saved.days&&typeof saved.days==="object")data=saved;}catch(e){}
+ if(!data.days)data.days={};
+ if(!data.days[today])data.days[today]={};
+ const boxes=[...document.querySelectorAll("#habits input")];
+ const complete=day=>names.every(n=>data.days[day]?.[n]===true);
+ function streak(){
+   let count=0;const d=new Date(); 
+   if(!complete(keyFor(d)))d.setDate(d.getDate()-1);
+   while(count<3660&&complete(keyFor(d))){count++;d.setDate(d.getDate()-1);}
+   return count;
+ }
+ function render(){
+   boxes.forEach(box=>{box.checked=data.days[today][box.dataset.name]===true;box.closest(".habit").classList.toggle("done",box.checked);});
+   document.getElementById("streak").textContent=String(streak());
+ }
+ boxes.forEach(box=>box.addEventListener("change",()=>{
+   data.days[today][box.dataset.name]=box.checked;
+   try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}
+   render();
+ }));
+ render();
 })();
 </script>
 </body>
